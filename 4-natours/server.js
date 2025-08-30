@@ -6,14 +6,10 @@ dotenv.config({ path: './config.env' }); // Load environment variables from conf
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
-mongoose.connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-}).then(() => {
+mongoose.connect(DB)
+  .then(() => console.log('✅ DB connection successful!'))
+  .catch(err => console.error('❌ DB connection error:', err));
 
-    console.log('DB connection successful!');
-})
 
 
 

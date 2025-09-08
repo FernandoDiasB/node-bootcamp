@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const appError = require('./utils/appError');
+const AppError = require('./utils/appError');
 const globalErrorHandler = require ('./controllers/errorController.js');
 const toursRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -29,7 +29,7 @@ app.use('/api/v1/tours', toursRouter);
 app.use('/api/v1/users', userRouter);
 
 app.all('*', (req, res, next) => {
-    next(new appError(`Can't find ${req.originalUrl} on this server!`, 404)); // Pass an error to the next middleware
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404)); // Pass an error to the next middleware
 });
 
 app.use(globalErrorHandler); // Global error handling middleware
